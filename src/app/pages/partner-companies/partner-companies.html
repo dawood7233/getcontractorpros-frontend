@@ -1,0 +1,10 @@
+<div class="inner-banner"><h1>Partner Companies</h1></div>
+<div class="page-shell">
+  <div class="container">
+    <p class="section-lead text-center">Independent companies that may contact you about home improvement offers.</p>
+    <input class="filter" type="search" [(ngModel)]="query" placeholder="Search partners" />
+    <ul class="partner-list">
+      <li *ngFor="let p of filtered">{{ p }}</li>
+    </ul>
+  </div>
+</div>

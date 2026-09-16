@@ -1,0 +1,10 @@
+{
+  "/proxy-providers": {
+    "target": "https://steermarketeer.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/proxy-providers": "/API/providers.php"
+    }
+  }
+}

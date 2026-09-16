@@ -1,0 +1,44 @@
+<header class="site-header" [class.is-sticky]="isScrolled">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <p>Welcome to <cite>GetContractorPros</cite> — trusted home improvement matching nationwide</p>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="container header-main__inner">
+      <a routerLink="/" class="logo" (click)="closeDropdown()">
+        <img src="assets/images/logo.png" alt="GetContractorPros" width="140" height="44" decoding="async" />
+      </a>
+
+      <nav class="nav" [class.is-open]="dropdownOpen" aria-label="Main">
+        <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeDropdown()">Home</a>
+        <a routerLink="/about" routerLinkActive="is-active" (click)="closeDropdown()">About</a>
+        <div class="services-menu" [class.open]="servicesOpen">
+          <a routerLink="/services" routerLinkActive="is-active" class="services-trigger" (click)="closeDropdown()">
+            Services
+            <span class="services-caret" aria-hidden="true"></span>
+          </a>
+          <div class="services-panel">
+            <a *ngFor="let s of services" [routerLink]="['/services', s.title]" (click)="closeDropdown()">{{ s.title }}</a>
+          </div>
+        </div>
+        <a routerLink="/contact" routerLinkActive="is-active" (click)="closeDropdown()">Contact</a>
+        <a routerLink="/services" class="nav-quote" (click)="closeDropdown()">Get a quote</a>
+      </nav>
+
+      <div class="header-actions">
+        <a routerLink="/services" class="btn btn--primary header-cta" (click)="closeDropdown()">Get a quote</a>
+        <button
+          type="button"
+          class="menu-toggle"
+          (click)="toggleDropdown()"
+          [attr.aria-expanded]="dropdownOpen"
+          aria-label="Toggle menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

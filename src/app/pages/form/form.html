@@ -1,0 +1,120 @@
+<div class="form-stage" *ngIf="service" data-tf-element-role="offer">
+  <div class="form-stage-bg" aria-hidden="true"></div>
+  <div class="form-stage-glow" aria-hidden="true"></div>
+
+  <div class="form-container">
+    <form class="quote-shell" (ngSubmit)="submit()" (keydown.enter)="onEnterKey($event)">
+      <input name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0;pointer-events:none;border:0;padding:0;margin:0" />
+      <input type="hidden" name="xxTrustedFormCertUrl">
+      <input id="leadid_token" name="universal_leadid" type="hidden">
+
+      <header class="form-info">
+        <div class="form-info__brand">
+          <span class="form-info__icon" [attr.aria-label]="service.title + ' icon'">
+            <i class="bi" [ngClass]="service.icon" aria-hidden="true"></i>
+          </span>
+          <div>
+            <p class="form-info__kicker">GetContractorPros</p>
+            <h1>Get a {{ service.title }} consultation</h1>
+          </div>
+        </div>
+        <p class="form-info__hint">One question at a time — we’ll match you with local independent contractors.</p>
+      </header>
+
+      <div class="perf" aria-label="Quote progress">
+        <div
+          class="perf-bar"
+          role="progressbar"
+          [attr.aria-valuenow]="progressPercent"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-label="Form progress"
+        >
+          <div class="perf-bar__fill" [style.width.%]="progressPercent"></div>
+        </div>
+        <ol class="perf-phases">
+          <li [class.active]="formPhase !== 'contact'" [class.done]="formPhase === 'contact'">Information</li>
+          <li [class.active]="formPhase === 'contact'">Contact</li>
+        </ol>
+      </div>
+
+      <div class="quote-main">
+        <p class="form-eyebrow">{{ phaseLabel }}</p>
+        <div class="questions" *ngIf="currentQuestion as q">
+          <div class="question">
+            <label>{{ q.label }}</label>
+
+            <div class="option-buttons" *ngIf="q.type === 'options' && q.options">
+              <button type="button" class="option-btn" *ngFor="let opt of q.options"
+                [class.selected]="answers[q.key] === opt" (click)="selectOption(q.key, opt)">{{ opt }}</button>
+            </div>
+
+            <input *ngIf="q.type === 'text' || q.type === 'email' || q.type === 'date'"
+              [type]="q.type === 'text' ? 'text' : q.type"
+              [name]="q.key"
+              [(ngModel)]="answers[q.key]"
+              (ngModelChange)="onFieldInput(q)" />
+
+            <input *ngIf="q.type === 'tel'"
+              type="tel"
+              [name]="q.key"
+              inputmode="numeric"
+              autocomplete="tel"
+              maxlength="10"
+              pattern="[0-9]*"
+              [(ngModel)]="answers[q.key]"
+              (ngModelChange)="onFieldInput(q)"
+              (keydown)="onPhoneKeydown($event)"
+              (paste)="onPhonePaste($event)" />
+
+            <textarea *ngIf="q.type === 'textarea'" [name]="q.key" [(ngModel)]="answers[q.key]"></textarea>
+
+            <div *ngIf="q.type === 'provider'">
+              <input type="text" name="providerQuery" [(ngModel)]="providerQuery" (ngModelChange)="onProviderInput($event)" placeholder="Start typing your utility" />
+              <div class="option-buttons" *ngIf="providerSuggestions.length">
+                <button type="button" class="option-btn" *ngFor="let p of providerSuggestions"
+                  [class.selected]="answers[q.key] === p.name" (click)="selectProvider(p.name)">{{ p.name }}</button>
+              </div>
+              <p class="location-hint" *ngIf="providerLoading">Loading providers…</p>
+            </div>
+
+            <label *ngIf="q.type === 'checkbox'" class="checkbox-label" for="leadid_tcpa_disclosure">
+              <input type="checkbox" id="leadid_tcpa_disclosure" name="agreement" [(ngModel)]="answers['agreement']">
+              By clicking GET YOUR QUOTE, I agree to the <a href="/user-terms" target="_blank">Terms of Service</a> and
+              <a href="/privacy-policy" target="_blank">Privacy Policy</a>. I authorize home improvement companies, their contractors, and
+              <a href="/partner-companies" target="_blank">Partner Companies</a> to contact me about home improvement offers by phone calls and text messages to the number I provided. I authorize that these marketing communications may be delivered to me using an automatic telephone dialing system or by prerecorded message. I understand that my consent is not a condition of purchase, and I may revoke that consent at any time. Mobile and data charges may apply.
+              <a href="/california-policy" target="_blank">California Residents</a>.
+            </label>
+
+            <div class="error" *ngIf="errors[q.key]">{{ errors[q.key] }}</div>
+          </div>
+        </div>
+        <div class="error form-general-error" *ngIf="errors['general']">{{ errors['general'] }}</div>
+      </div>
+
+      <div class="main-footer">
+        <div class="buttons" [ngClass]="{'multiple': currentStep > 1, 'single': currentStep === 1}">
+          <button *ngIf="currentStep > 1" type="button" (click)="previousStep()" class="btn-previous">
+            Back
+          </button>
+          <button *ngIf="currentStep < totalSteps" type="button" (click)="nextStep()" class="btn-next" [disabled]="isValidating">
+            {{ isValidating ? 'Validating...' : 'Continue' }}
+            <span class="btn-arrow" aria-hidden="true" *ngIf="!isValidating">→</span>
+          </button>
+          <button *ngIf="currentStep === totalSteps" type="submit" class="btn-submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Submitting...' : 'Get Your Quote' }}
+            <span class="btn-arrow" aria-hidden="true" *ngIf="!isSubmitting">→</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="page-shell" *ngIf="!service">
+  <div class="container text-center">
+    <h1>Service not found</h1>
+    <p>Please choose a valid service.</p>
+    <a routerLink="/services" class="btn-brand">All services</a>
+  </div>
+</div>

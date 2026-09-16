@@ -1,0 +1,30 @@
+.filter {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto 24px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font: inherit;
+}
+
+.partner-list {
+  columns: 3;
+  gap: 12px 24px;
+  background: var(--cream);
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.partner-list li {
+  break-inside: avoid;
+  font-size: 0.9rem;
+  padding: 4px 0;
+}
+
+@media (max-width: 800px) {
+  .partner-list {
+    columns: 1;
+  }
+}

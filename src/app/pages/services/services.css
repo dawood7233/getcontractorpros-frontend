@@ -1,0 +1,36 @@
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 32px;
+}
+
+.svc-grid article {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.svc-grid img {
+  width: 100%;
+  height: 160px;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--primary-soft);
+}
+
+.svc-grid .btn-brand {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .svc-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,216 @@
+<section class="hero">
+  <div class="hero-slide on" [style.background-image]="'url(' + heroSrc + ')'"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+    <p class="kicker">Caring for every home</p>
+    <h1>We match homeowners with trusted local contractors</h1>
+    <p class="hero-lead">
+      Roofing, windows, HVAC, solar, plumbing, and more — get quotes from independent professionals near you.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/services" class="btn-brand">Get a free quote</a>
+      <a routerLink="/about" class="btn-outline-light">Learn more</a>
+    </div>
+    <div class="hero-nav">
+      <button type="button" (click)="prevHero()" aria-label="Previous">‹</button>
+      <button type="button" (click)="nextHero()" aria-label="Next">›</button>
+    </div>
+  </div>
+</section>
+
+<section class="icon-row">
+  <div class="container icon-grid">
+    <article>
+      <span>01</span>
+      <h3>Vetted professionals</h3>
+      <p>Connect with local contractors who understand your region’s codes, weather, and project needs.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <h3>Fast quotes</h3>
+      <p>Describe the job once. Compare options instead of spending days calling around.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <h3>Nationwide matching</h3>
+      <p>Home improvement help across the United States, with a local contractor in your zip code.</p>
+    </article>
+  </div>
+</section>
+
+<section class="who">
+  <div class="container who-grid">
+    <div class="who-media">
+      <img
+        src="assets/images/home-1-sm.webp"
+        alt="Home improvement professionals"
+        width="900"
+        height="675"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div>
+      <p class="section-eyebrow">Who we are</p>
+      <h2>We make home improvement simpler</h2>
+      <p>
+        Finding the right contractor for your budget and timeline can be overwhelming. GetContractorPros helps
+        homeowners request quotes, compare independent professionals, and move forward with confidence.
+      </p>
+      <ul class="checks">
+        <li>Match with local roofing, windows, HVAC, and remodeling pros</li>
+        <li>Save time with one request instead of dozens of calls</li>
+        <li>Compare estimates and hire on your terms</li>
+      </ul>
+      <a routerLink="/about" class="btn-brand">Read more</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <p class="section-eyebrow text-center">Our features</p>
+    <h2 class="text-center">Personalized support for a better home</h2>
+    <div class="feat-grid">
+      <article *ngFor="let s of featured; let i = index">
+        <div class="num">0{{ i + 1 }}</div>
+        <h3><a [routerLink]="['/services', s.title]">{{ s.title }}</a></h3>
+        <p>{{ s.description }}</p>
+        <a [routerLink]="['/services', s.title]" class="more">Get quote →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container why-grid">
+    <div>
+      <p class="section-eyebrow">Why choose us</p>
+      <h2>We make a difference in your project</h2>
+      <p>
+        Skip the endless search. Tell us what you need and we help you connect with independent contractors
+        who can bid on the work.
+      </p>
+    </div>
+    <ul class="checks two-col">
+      <li>Reliable & verified professionals</li>
+      <li>Nationwide service, local touch</li>
+      <li>Fast, no-obligation quotes</li>
+      <li>Compare multiple estimates</li>
+      <li>Roofing, HVAC, solar, plumbing & more</li>
+      <li>Clear next steps after you submit</li>
+      <li>Homeowner-first matching</li>
+      <li>Support across the United States</li>
+    </ul>
+  </div>
+</section>
+
+<section class="area">
+  <div class="container">
+    <p class="section-eyebrow text-center">Service area</p>
+    <h2 class="text-center">What we offer homeowners</h2>
+    <div class="area-grid">
+      <article *ngFor="let s of areaCards">
+        <img
+          [src]="s.image"
+          [alt]="s.title"
+          width="640"
+          height="400"
+          loading="lazy"
+          decoding="async"
+        />
+        <h3><a [routerLink]="['/services', s.title]">{{ s.title }}</a></h3>
+        <p>{{ s.description }}</p>
+        <a [routerLink]="['/services', s.title]">Read more</a>
+      </article>
+    </div>
+    <div class="area-more">
+      <a routerLink="/services" class="btn-brand">View more</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats-grid">
+    <div>
+      <p class="section-eyebrow">Our mission</p>
+      <h2>Help homeowners hire with confidence</h2>
+      <p>We exist to make it easier to find local contractors, compare quotes, and get home projects moving.</p>
+    </div>
+    <div class="stat-cards">
+      <div><strong>14</strong><span>Home services</span></div>
+      <div><strong>50</strong><span>States matched</span></div>
+      <div><strong>24/7</strong><span>Quote requests</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="container">
+    <p class="section-eyebrow text-center">How it works</p>
+    <h2 class="text-center">From request to local quotes</h2>
+    <ol class="how-track">
+      <li *ngFor="let step of steps">
+        <span class="how-num">{{ step.n }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </li>
+    </ol>
+    <div class="how-cta">
+      <a routerLink="/services" class="btn-brand">Get a free quote</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <p class="section-eyebrow text-center">FAQs</p>
+    <h2 class="text-center">Your most important questions answered</h2>
+    <div class="faq-panel">
+      <div class="faq-item" *ngFor="let f of faqs; let i = index" [class.open]="openFaq === i">
+        <button type="button" (click)="toggleFaq(i)" [attr.aria-expanded]="openFaq === i">
+          <span class="faq-index">0{{ i + 1 }}</span>
+          <span class="faq-q">{{ f.q }}</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <p class="faq-a" *ngIf="openFaq === i">{{ f.a }}</p>
+      </div>
+    </div>
+    <aside class="faq-help">
+      <div>
+        <h3>Still have questions?</h3>
+        <p>Can’t find the answer you’re looking for? Reach our team or start a quote.</p>
+      </div>
+      <div class="faq-help__actions">
+        <a routerLink="/contact" class="btn-outline-light">Get in touch</a>
+        <a routerLink="/services" class="btn-brand">Get a free quote</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="quotes">
+  <div class="container">
+    <p class="section-eyebrow text-center">Homeowner feedback</p>
+    <h2 class="text-center">What customers say about matching with local contractors</h2>
+    <div class="quote-grid">
+      <article *ngFor="let t of testimonials">
+        <p>“{{ t.quote }}”</p>
+        <h4>{{ t.name }}</h4>
+        <span>{{ t.role }}</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="estimate">
+  <div class="container estimate-inner">
+    <div>
+      <p class="section-eyebrow">Estimate</p>
+      <h2>Get a free cost estimate</h2>
+      <p>Tell us about your home project and connect with independent contractors in your area.</p>
+      <p><strong>+1 9293900290</strong><br />info@getcontractorpros.com</p>
+    </div>
+    <a routerLink="/services" class="btn-brand btn-brand-lg">Book a free consultation</a>
+  </div>
+</section>

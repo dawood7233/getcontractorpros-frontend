@@ -1,0 +1,26 @@
+<div class="inner-banner">
+  <h1>Our Services</h1>
+</div>
+
+<div class="page-shell">
+  <div class="container">
+    <p class="section-eyebrow text-center">Home improvement</p>
+    <h2 class="text-center">Choose a service to request quotes</h2>
+    <div class="svc-grid">
+      <article *ngFor="let s of services; let i = index">
+        <img
+          [src]="s.image"
+          [alt]="s.title"
+          width="640"
+          height="400"
+          [attr.loading]="i < 3 ? 'eager' : 'lazy'"
+          [attr.fetchpriority]="i === 0 ? 'high' : 'low'"
+          decoding="async"
+        />
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.description }}</p>
+        <a [routerLink]="['/services', s.title]" class="btn-brand">Get quote</a>
+      </article>
+    </div>
+  </div>
+</div>
